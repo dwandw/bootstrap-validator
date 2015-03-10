@@ -219,8 +219,8 @@
   Validator.prototype.toggleSubmit = function () {
     if(!this.options.disable) return
     var $btn = this.$element.find('input[type="submit"], button[type="submit"]')
-    $btn.toggleClass('disabled', this.isIncomplete() || this.hasErrors())
-      .css({'pointer-events': 'all', 'cursor': 'pointer'})
+    $btn.toggleClass('disabled', this.isIncomplete() || this.hasErrors());
+    if(this.isIncomplete()||this.hasErrors()){$btn.attr("disabled","disabled")}else{$btn.removeAttr("disabled")}
   }
 
   Validator.prototype.defer = function ($el, callback) {
@@ -253,7 +253,7 @@
         .html(originalContent)
     })
 
-    this.$element.find('input[type="submit"], button[type="submit"]').removeClass('disabled')
+    this.$element.find('input[type="submit"], button[type="submit"]').removeClass('disabled').removeAttr("disabled")
 
     this.$element.find('.has-error').removeClass('has-error')
 
